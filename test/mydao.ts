@@ -198,7 +198,7 @@ describe("MyDao", function () {
             const now = (await ethers.provider.getBlock(await ethers.provider.getBlockNumber())).timestamp;
             await MyDaoInstance.connect(addr1).vote(proposalId.value, true);
             await ethers.provider.send("evm_mine", [now + voteDuration]);
-            await expect(MyDaoInstance.finishProposal(proposalId.value)).to.be.revertedWith("Proposal reverted");
+            await expect(MyDaoInstance.finishProposal(proposalId.value)).to.be.revertedWith("Only minter allowed");
         });
     });
     describe("widthdraw", function () {
